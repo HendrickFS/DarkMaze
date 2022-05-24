@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Dialog.gd" type="Script" id=1]
 [ext_resource path="res://Screens/DialogBox.png" type="Texture" id=2]
 [ext_resource path="res://World/Nothing.png" type="Texture" id=3]
+[ext_resource path="res://Screens/EnterButton.png" type="Texture" id=4]
 
 [sub_resource type="Theme" id=1]
 
@@ -39,3 +40,10 @@ margin_right = 819.0
 margin_bottom = 595.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "[PRESS ENTER]"
+
+[node name="Enter01" type="TouchScreenButton" parent="."]
+position = Vector2( 771, 504 )
+normal = ExtResource( 4 )
+
+[connection signal="pressed" from="Enter01" to="." method="_on_Enter01_pressed"]
+[connection signal="pressed" from="Enter01" to="Enter01" method="_on_Enter01_pressed"]

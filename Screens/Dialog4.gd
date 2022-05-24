@@ -41,3 +41,7 @@ func _process(delta):
 		else:
 			get_tree().change_scene("res://Screens/EndScreen.tscn")
 
+
+
+func _on_Enter01_pressed():
+	ShowText()

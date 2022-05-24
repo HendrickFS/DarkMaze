@@ -1,8 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player/MazeSoul.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Player/Circle.png" type="Texture" id=3]
+[ext_resource path="res://Player/LeftArrow.png" type="Texture" id=4]
+[ext_resource path="res://Player/RightArrow.png" type="Texture" id=5]
+[ext_resource path="res://Player/DownArrow.png" type="Texture" id=6]
+[ext_resource path="res://Player/UpArrow.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 9.0
@@ -160,7 +164,23 @@ tracks/0/keys = {
 [node name="Player" type="Node2D"]
 
 [node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 112, 46 )
 script = ExtResource( 2 )
+
+[node name="Circle2" type="Sprite" parent="Player"]
+position = Vector2( 28, -41 )
+scale = Vector2( 16.6756, 9 )
+texture = ExtResource( 3 )
+
+[node name="Circle3" type="Sprite" parent="Player"]
+position = Vector2( 1.49997, -81 )
+scale = Vector2( 20.57, 11.8 )
+texture = ExtResource( 3 )
+
+[node name="Circle4" type="Sprite" parent="Player"]
+position = Vector2( -75, -13 )
+scale = Vector2( 12.4513, 7.2725 )
+texture = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
 texture = ExtResource( 1 )
@@ -188,3 +208,32 @@ texture = ExtResource( 3 )
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 zoom = Vector2( 0.3, 0.3 )
+
+[node name="Left" type="TouchScreenButton" parent="Player"]
+position = Vector2( 52, 51 )
+scale = Vector2( 0.34375, 0.28125 )
+normal = ExtResource( 4 )
+
+[node name="Right" type="TouchScreenButton" parent="Player"]
+position = Vector2( 119, 51 )
+scale = Vector2( 0.34375, 0.28125 )
+normal = ExtResource( 5 )
+
+[node name="Down" type="TouchScreenButton" parent="Player"]
+position = Vector2( 85, 64 )
+scale = Vector2( 0.34375, 0.28125 )
+normal = ExtResource( 6 )
+
+[node name="Up" type="TouchScreenButton" parent="Player"]
+position = Vector2( 85, 34 )
+scale = Vector2( 0.34375, 0.28125 )
+normal = ExtResource( 7 )
+
+[connection signal="pressed" from="Player/Left" to="Player" method="_on_Left_pressed"]
+[connection signal="released" from="Player/Left" to="Player" method="_on_Left_released"]
+[connection signal="pressed" from="Player/Right" to="Player" method="_on_Right_pressed"]
+[connection signal="released" from="Player/Right" to="Player" method="_on_Right_released"]
+[connection signal="pressed" from="Player/Down" to="Player" method="_on_Down_pressed"]
+[connection signal="released" from="Player/Down" to="Player" method="_on_Down_released"]
+[connection signal="pressed" from="Player/Up" to="Player" method="_on_Up_pressed"]
+[connection signal="released" from="Player/Up" to="Player" method="_on_Up_released"]

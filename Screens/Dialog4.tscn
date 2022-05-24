@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Enemies/ScaryFace.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/DialogBoxScary.png" type="Texture" id=2]
 [ext_resource path="res://World/Nothing.png" type="Texture" id=3]
 [ext_resource path="res://Screens/Dialog4.gd" type="Script" id=4]
 [ext_resource path="res://Enemies/RedLights.png" type="Texture" id=5]
+[ext_resource path="res://Screens/RedEnter.png" type="Texture" id=6]
 
 [sub_resource type="Theme" id=1]
 
@@ -178,4 +179,11 @@ text = "[PRESS ENTER]"
 wait_time = 0.1
 one_shot = true
 
+[node name="Enter01" type="TouchScreenButton" parent="."]
+position = Vector2( 771, 517 )
+scale = Vector2( 1.04167, 0.875 )
+normal = ExtResource( 6 )
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="Enter01" to="." method="_on_Enter01_pressed"]
+[connection signal="pressed" from="Enter01" to="Enter01" method="_on_Enter01_pressed"]

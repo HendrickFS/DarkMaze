@@ -1,10 +1,15 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Player/MazeSoul.png" type="Texture" id=1]
 [ext_resource path="res://Player/FightPlayer.gd" type="Script" id=2]
 [ext_resource path="res://Player/PlayerLife.png" type="Texture" id=3]
 [ext_resource path="res://Player/BackgroundLifeBar.png" type="Texture" id=4]
 [ext_resource path="res://Player/LifeBar.gd" type="Script" id=5]
+[ext_resource path="res://Player/LeftArrow.png" type="Texture" id=6]
+[ext_resource path="res://Player/DownArrow.png" type="Texture" id=7]
+[ext_resource path="res://Player/RightArrow.png" type="Texture" id=8]
+[ext_resource path="res://Player/UpArrow.png" type="Texture" id=9]
+[ext_resource path="res://Player/ATKButtton.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 9.0
@@ -90,6 +95,7 @@ tracks/0/keys = {
 [node name="Player" type="Node2D"]
 
 [node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( -1, -40 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
@@ -121,4 +127,38 @@ texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 3 )
 script = ExtResource( 5 )
 
+[node name="Left" type="TouchScreenButton" parent="."]
+position = Vector2( 611, -94 )
+scale = Vector2( 1.14583, 1.02083 )
+normal = ExtResource( 6 )
+
+[node name="Right" type="TouchScreenButton" parent="."]
+position = Vector2( 846, -89 )
+scale = Vector2( 1.16667, 0.96875 )
+normal = ExtResource( 8 )
+
+[node name="Down" type="TouchScreenButton" parent="."]
+position = Vector2( 721, -35 )
+scale = Vector2( 1.27083, 1.10417 )
+normal = ExtResource( 7 )
+
+[node name="Up" type="TouchScreenButton" parent="."]
+position = Vector2( 726, -161 )
+scale = Vector2( 1.17708, 1.14583 )
+normal = ExtResource( 9 )
+
+[node name="ATK" type="TouchScreenButton" parent="."]
+position = Vector2( -50, -65 )
+scale = Vector2( 1.44792, 1.23958 )
+normal = ExtResource( 10 )
+
 [connection signal="damage" from="Player" to="LifeBar" method="_on_Player_damage"]
+[connection signal="pressed" from="Left" to="Player" method="_on_Left_pressed"]
+[connection signal="released" from="Left" to="Player" method="_on_Left_released"]
+[connection signal="pressed" from="Right" to="Player" method="_on_Right_pressed"]
+[connection signal="released" from="Right" to="Player" method="_on_Right_released"]
+[connection signal="pressed" from="Down" to="Player" method="_on_Down_pressed"]
+[connection signal="released" from="Down" to="Player" method="_on_Down_released"]
+[connection signal="pressed" from="Up" to="Player" method="_on_Up_pressed"]
+[connection signal="released" from="Up" to="Player" method="_on_Up_released"]
+[connection signal="pressed" from="ATK" to="Player" method="_on_ATK_pressed"]

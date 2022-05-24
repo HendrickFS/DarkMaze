@@ -28,3 +28,7 @@ func _process(delta):
 	else:
 		text.visible_characters+=1
 		TypeTime=0.1
+
+
+func _on_Enter01_pressed():
+	ShowText()

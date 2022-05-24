@@ -1,7 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/MazeDarkSoul.png" type="Texture" id=1]
 [ext_resource path="res://Player/DarkPlayer.gd" type="Script" id=2]
+[ext_resource path="res://Player/LeftArrow.png" type="Texture" id=3]
+[ext_resource path="res://Player/DownArrow.png" type="Texture" id=4]
+[ext_resource path="res://Player/RightArrow.png" type="Texture" id=5]
+[ext_resource path="res://Player/UpArrow.png" type="Texture" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 9.0
@@ -110,3 +114,32 @@ anims/Up = SubResource( 6 )
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 zoom = Vector2( 0.3, 0.3 )
+
+[node name="Left" type="TouchScreenButton" parent="Player"]
+position = Vector2( 52, 51 )
+scale = Vector2( 0.34375, 0.28125 )
+normal = ExtResource( 3 )
+
+[node name="Right" type="TouchScreenButton" parent="Player"]
+position = Vector2( 119, 51 )
+scale = Vector2( 0.34375, 0.28125 )
+normal = ExtResource( 5 )
+
+[node name="Down" type="TouchScreenButton" parent="Player"]
+position = Vector2( 85, 64 )
+scale = Vector2( 0.34375, 0.28125 )
+normal = ExtResource( 4 )
+
+[node name="Up" type="TouchScreenButton" parent="Player"]
+position = Vector2( 85, 34 )
+scale = Vector2( 0.34375, 0.28125 )
+normal = ExtResource( 6 )
+
+[connection signal="pressed" from="Player/Left" to="Player" method="_on_Left_pressed"]
+[connection signal="released" from="Player/Left" to="Player" method="_on_Left_released"]
+[connection signal="pressed" from="Player/Right" to="Player" method="_on_Right_pressed"]
+[connection signal="released" from="Player/Right" to="Player" method="_on_Right_released"]
+[connection signal="pressed" from="Player/Down" to="Player" method="_on_Down_pressed"]
+[connection signal="released" from="Player/Down" to="Player" method="_on_Down_released"]
+[connection signal="pressed" from="Player/Up" to="Player" method="_on_Up_pressed"]
+[connection signal="released" from="Player/Up" to="Player" method="_on_Up_released"]
