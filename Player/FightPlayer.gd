@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-var velocity = Vector2.ZERO
+var move = Vector2.ZERO
+var speed=200
 onready var animation = $AnimationPlayer
 var dark=true
 var hp=10
@@ -11,21 +12,20 @@ var down=false
 var up=false
 signal damage(hp)
 func _physics_process(delta):
+	move.x=Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	move.y=Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	move_and_slide(move.normalized()*speed)	
 	if Input.is_action_pressed("ui_right") or right:
 		animation.play("Right")
-		velocity.x =4
 		dir=1
 	elif Input.is_action_pressed("ui_left") or left:
 		animation.play("Left")
-		velocity.x =-4
 		dir=2
 	elif Input.is_action_pressed("ui_up")or up:
 		animation.play("Up")
-		velocity.y =-4
 		dir=3
 	elif Input.is_action_pressed("ui_down") or down:
 		animation.play("Down")
-		velocity.y =4
 		dir=4
 	elif Input.is_action_just_pressed("ui_select"):
 		if dir==1:
@@ -48,12 +48,10 @@ func _physics_process(delta):
 			var firedSpark = Spark.instance()
 			firedSpark.position = Vector2(position.x,position.y+25)
 			get_parent().call_deferred("add_child",firedSpark)
-	else:
-		velocity.x=0
-		velocity.y=0
+
 	if !dark:
 		animation.play("Light")
-	var collision = move_and_collide(velocity)
+	var collision = move_and_collide(move)
 	
 func kill():
 	hp-=1

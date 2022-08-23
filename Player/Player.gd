@@ -12,19 +12,19 @@ signal direction(dir)
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_right") or right:
 		animation.play("Right")
-		velocity.x =4
+		velocity.x =100
 		dir=1
 	elif Input.is_action_pressed("ui_left") or left:
 		animation.play("Left")
-		velocity.x =-4
+		velocity.x =-100
 		dir=2
 	elif Input.is_action_pressed("ui_up") or up:
 		animation.play("Up")
-		velocity.y =-4
+		velocity.y =-100
 		dir=3
 	elif Input.is_action_pressed("ui_down") or down:
 		animation.play("Down")
-		velocity.y =4
+		velocity.y =100
 		dir=4
 	else:
 		velocity.x=0
@@ -32,14 +32,16 @@ func _physics_process(delta):
 	if !dark:
 		animation.play("Light")
 	emit_signal("direction",dir)
-	var collision = move_and_collide(velocity)
+	velocity = move_and_slide(velocity)
 	if collision and collision.collider.has_method("passed"):
 		get_tree().change_scene("res://Screens/Dialog2.tscn")
 	if collision and collision.collider.has_method("end"):
 		get_tree().change_scene("res://Screens/Dialog4.tscn")
 	
 
-
+func passed():
+	queue_free()
+	
 func _on_Left_pressed():
 	left=true
 

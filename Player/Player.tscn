@@ -164,7 +164,7 @@ tracks/0/keys = {
 [node name="Player" type="Node2D"]
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 112, 46 )
+position = Vector2( 1, 1 )
 script = ExtResource( 2 )
 
 [node name="Circle2" type="Sprite" parent="Player"]
@@ -202,7 +202,7 @@ anims/Up = SubResource( 6 )
 
 [node name="Circle" type="Sprite" parent="Player"]
 position = Vector2( -12.75, -5.56251 )
-scale = Vector2( 3.5625, 2.07438 )
+scale = Vector2( 6.04, 3.41 )
 texture = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
