@@ -9,6 +9,6 @@ func _on_StartButton_pressed():
 func _process(delta):
 	if play:
 		if time<=0:
-			get_tree().change_scene("res://Screens/Dialog.tscn")
+			get_tree().change_scene("res://Screens/Dialog0.tscn")
 		else:
 			time-=delta
